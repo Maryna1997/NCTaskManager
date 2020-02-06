@@ -96,26 +96,6 @@ public class LinkedTaskList extends AbstractTaskList {
         }
     }
 
-    /*
-    public LinkedTaskList incoming(int from, int to){
-        if(from < 0) {
-            throw new IllegalArgumentException("The time from should be above 0!");
-        }
-        if(to <= 0) {
-            throw new IllegalArgumentException("The time to should be above 0!");
-        }
-        if(to <= from) {
-            throw new IllegalArgumentException("The time to should be above the time from!");
-        }
-       LinkedTaskList arrayOfScheduledTasks = new LinkedTaskList();
-        for (int i = 0; i < countOfTasks; i++) {
-            if (getTask(i).nextTimeAfter(from) > from && getTask(i).nextTimeAfter(from) <= to && getTask(i).isActive()) {
-                arrayOfScheduledTasks.add(getTask(i));
-            }
-        }
-        return arrayOfScheduledTasks;
-    }*/
-
     @Override
     public Iterator<Task> iterator(){
         return new LinkedTaskListIterator();

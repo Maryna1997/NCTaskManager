@@ -4,36 +4,34 @@ import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.chornobai.tasks.model.ArrayTaskList;
 import ua.edu.sumdu.j2se.chornobai.tasks.model.Task;
 import ua.edu.sumdu.j2se.chornobai.tasks.model.Tasks;
-import ua.edu.sumdu.j2se.chornobai.tasks.view.PrintTasksView;
+import ua.edu.sumdu.j2se.chornobai.tasks.model.TimeTypes;
+import ua.edu.sumdu.j2se.chornobai.tasks.view.AddEditTaskView;
+import ua.edu.sumdu.j2se.chornobai.tasks.view.CalendarView;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 
 public class ViewCalendarController {
-    final static Logger logger = Logger.getLogger(ViewCalendarController.class);
-    public static void viewCalendar(ArrayTaskList taskList) {
-        System.out.println("Enter start date:");
-        LocalDateTime startDate = EnterLocalDateTimeController.getLocalDateTime();
-        LocalDateTime endDate = AddTaskController.checkEndTime(startDate);
-        //System.out.println("Enter end date:");
-        //LocalDateTime endDate = EnterLocalDateTimeController.getLocalDateTime();
+    private AddTaskController addTaskController;
+    private EnterLocalDateTimeController enterLocalDateTimeController;
+    private AddEditTaskView addEditTaskView;
+    private CalendarView calendarView;
 
+    public ViewCalendarController(EnterLocalDateTimeController enterLocalDateTimeController, AddTaskController addTaskController,
+                                  AddEditTaskView addEditTaskView, CalendarView calendarView) {
+        this.enterLocalDateTimeController = enterLocalDateTimeController;
+        this.addTaskController = addTaskController;
+        this.addEditTaskView = addEditTaskView;
+        this.calendarView = calendarView;
+    }
+
+    final static Logger logger = Logger.getLogger(ViewCalendarController.class);
+    public void viewCalendar(ArrayTaskList taskList) {
+        addEditTaskView.printMessageAboutTime(TimeTypes.types.START);
+        LocalDateTime startDate = enterLocalDateTimeController.getLocalDateTime();
+        LocalDateTime endDate = addTaskController.checkEndTime(startDate);
         SortedMap<LocalDateTime, Set<Task>> result = Tasks.calendar(taskList, startDate, endDate);
-        for (Map.Entry<LocalDateTime, Set<Task>> element: result.entrySet()
-             ) {
-            LocalDateTime key = element.getKey();
-            Set<Task> value = element.getValue();
-            System.out.println("\n" + "-------------Date: " + key.toString() + "-------------");
-            int i = 1;
-            for (Task task: value
-            ) {
-                System.out.println("\n" + "************ Task #" + i++ + "************");
-                //PrintTasksView.printInfoAboutTask(task);
-                System.out.println(task.getTitle());
-                logger.info("Print calendar");
-            }
-        }
+        calendarView.viewCalendar(result);
     }
 }

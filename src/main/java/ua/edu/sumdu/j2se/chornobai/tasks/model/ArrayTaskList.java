@@ -61,27 +61,6 @@ public class ArrayTaskList extends AbstractTaskList {
         else return null;
     }
 
-    /*
-    public ArrayTaskList incoming(int from, int to){
-        if(from < 0) {
-            throw new IllegalArgumentException("The time from should be above 0!");
-        }
-        if(to <= 0) {
-            throw new IllegalArgumentException("The time to should be above 0!");
-        }
-        if(to <= from) {
-            throw new IllegalArgumentException("The time to should be above the time from!");
-        }
-        ArrayTaskList arrayOfScheduledTasks = new ArrayTaskList();
-        for (int i = 0; i < countOfTasks; i++) {
-            if (tasks[i].nextTimeAfter(from) > from && tasks[i].nextTimeAfter(from) <= to && tasks[i].isActive()) {
-                arrayOfScheduledTasks.add(tasks[i]);
-            }
-        }
-        return arrayOfScheduledTasks;
-    }
-     */
-
     @Override
     public Iterator<Task> iterator(){
         return new ArrayTaskListIterator();

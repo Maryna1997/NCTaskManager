@@ -5,9 +5,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.google.gson.Gson;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 
 public class TaskIO {
+    final static Logger logger = Logger.getLogger(TaskIO.class);
 
     public static void write(AbstractTaskList tasks, OutputStream out) throws IOException {
        try (DataOutputStream dataOutputStream = new DataOutputStream(out)){
@@ -34,12 +37,12 @@ public class TaskIO {
                        dataOutputStream.writeBytes(ldtTime);
                    }
                } catch (IOException e) {
+                   logger.log(Level.FATAL, "Exception: ", e);
                    e.printStackTrace();
                }
                    }
            );
        }
-
     }
 
     public static void read(AbstractTaskList tasks, InputStream in) throws IOException{
@@ -106,6 +109,7 @@ public class TaskIO {
             fileWriter.write(line);
             fileWriter.flush();
         } catch (IOException e) {
+            logger.log(Level.FATAL, "Exception: ", e);
             e.printStackTrace();
         }
     }
@@ -117,9 +121,8 @@ public class TaskIO {
             for (Task task : list) {
                 tasks.add(task);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
+            logger.log(Level.FATAL, "Exception: ", e);
             e.printStackTrace();
         }
     }

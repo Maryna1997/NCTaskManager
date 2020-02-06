@@ -27,12 +27,6 @@ public class Task implements Cloneable, Serializable {
         if(interval < 0) {
             throw new IllegalArgumentException("The interval should be above 0!");
         }
-//        if(start == null) {
-//            throw new IllegalArgumentException("The start time should be above 0!");
-//        }
-//        if(end == null) {
-//            throw new IllegalArgumentException("The end time should be above 0!");
-//        }
         this.title = title;
         this.start = start;
         this.end = end;
@@ -71,9 +65,6 @@ public class Task implements Cloneable, Serializable {
     }
 
     public void setTime(LocalDateTime time) {
-//        if(time < 0) {
-//            throw new IllegalArgumentException("The time should be above 0!");
-//        }
         if (repeated) {
             repeated = false;
             this.time = time;
@@ -112,12 +103,7 @@ public class Task implements Cloneable, Serializable {
         if(interval < 0) {
             throw new IllegalArgumentException("The interval should be above 0!");
         }
-//        if(start < 0) {
-//            throw new IllegalArgumentException("The start time should be above 0!");
-//        }
-//        if(end <= 0) {
-//            throw new IllegalArgumentException("The end time should be above 0!");
-//        }
+
         if (!repeated) {
             repeated = true;
             this.start = start;
@@ -132,9 +118,6 @@ public class Task implements Cloneable, Serializable {
     }
 
     public LocalDateTime nextTimeAfter(LocalDateTime current) {
-//        if(current < 0) {
-//            throw new IllegalArgumentException("The current time should be above 0!");
-//        }
 
         if (active) {
             if (repeated) {
