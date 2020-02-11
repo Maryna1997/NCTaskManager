@@ -4,7 +4,8 @@ import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.chornobai.tasks.model.ArrayTaskList;
 import ua.edu.sumdu.j2se.chornobai.tasks.model.Task;
 
-public class PrintTasksView {
+public class PrintTasksView implements Observer {
+    private ArrayTaskList listOfTasks;
 
     final static Logger logger = Logger.getLogger(PrintTasksView.class);
 
@@ -45,4 +46,11 @@ public class PrintTasksView {
         }
         logger.info("Print info about task " + task.getTitle());
     }
+
+    @Override
+    public void update(ArrayTaskList taskList) {
+        listOfTasks = taskList;
+        printListOfTasks(listOfTasks);
+    }
+
 }

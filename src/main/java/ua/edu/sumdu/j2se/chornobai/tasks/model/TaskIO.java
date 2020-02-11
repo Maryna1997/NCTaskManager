@@ -59,13 +59,13 @@ public class TaskIO {
                 if (repeatInterval != 0) {
                     LocalDateTime start = LocalDateTime.parse(new String(dataInputStream.readNBytes(dataInputStream.readInt())), DateTimeFormatter.ISO_DATE_TIME);
                     LocalDateTime end = LocalDateTime.parse(new String(dataInputStream.readNBytes(dataInputStream.readInt())), DateTimeFormatter.ISO_DATE_TIME);
-                    Task task = new Task(title.toString(), start, end, repeatInterval);
+                    Task task = new Task(title.toString(), start, end, repeatInterval, isActive);
                     task.setActive(isActive);
                     tasks.add(task);
                 }
                 else {
                     LocalDateTime time = LocalDateTime.parse(new String(dataInputStream.readNBytes(dataInputStream.readInt())), DateTimeFormatter.ISO_DATE_TIME);
-                    Task task = new Task(title.toString(), time);
+                    Task task = new Task(title.toString(), time, isActive);
                     task.setActive(isActive);
                     tasks.add(task);
                 }

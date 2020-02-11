@@ -13,7 +13,6 @@ public class EnterLocalDateTimeController {
         this.enterLocalDateTimeView = enterLocalDateTimeView;
     }
 
-    final static Logger logger = Logger.getLogger(EditTaskController.class);
     public LocalDateTime getLocalDateTime(){
         int year = enterLocalDateTimeView.enterYear();
         int month = enterLocalDateTimeView.enterMonth();

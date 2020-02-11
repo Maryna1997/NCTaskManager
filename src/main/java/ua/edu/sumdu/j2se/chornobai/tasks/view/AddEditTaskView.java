@@ -18,9 +18,30 @@ public class AddEditTaskView {
     final static Logger logger = Logger.getLogger(AddEditTaskView.class);
 
     public String enterTitle() {
+        String title = "";
         System.out.println("Enter title:");
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        title = scanner.nextLine();
+        if (title.isEmpty()){
+            System.out.println("Title must not be empty!");
+            return enterTitle();
+        }
+        else return title;
+    }
+
+    public boolean enterIsActive() {
+        Scanner scanner = new Scanner(System.in);
+        boolean isActive = false;
+        System.out.println("Is task active (true/false)?");
+        try {
+            isActive = scanner.nextBoolean();
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Error: enter 'true' or 'false'");
+            logger.log(Level.FATAL, "Exception: ", e);
+            return enterIsActive();
+        }
+        return isActive;
     }
 
     public boolean enterIsRepeated() {
@@ -41,7 +62,7 @@ public class AddEditTaskView {
     public int enterInterval() {
         Scanner scanner = new Scanner(System.in);
         int interval = 0;
-        System.out.println("Enter repeated interval:");
+        System.out.println("Enter repeated interval (seconds):");
         try {
             interval  = scanner.nextInt();
             if (interval < 1){

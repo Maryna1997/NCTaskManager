@@ -54,6 +54,9 @@ public class Main {
 
 		AppController appController = new AppController(addTaskController, editTaskController, viewCalendarController,
 				                                        deleteTaskController, writeInfoController, menuView, printTasksView);
+		addTaskController.registerObserver(printTasksView);
+		deleteTaskController.registerObserver(printTasksView);
+		editTaskController.registerObserver(printTasksView);
 		appController.showMenu(taskList);
 	}
 }

@@ -26,7 +26,6 @@ public class ViewCalendarController {
         this.calendarView = calendarView;
     }
 
-    final static Logger logger = Logger.getLogger(ViewCalendarController.class);
     public void viewCalendar(ArrayTaskList taskList) {
         addEditTaskView.printMessageAboutTime(TimeTypes.types.START);
         LocalDateTime startDate = enterLocalDateTimeController.getLocalDateTime();

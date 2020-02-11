@@ -7,7 +7,7 @@ import ua.edu.sumdu.j2se.chornobai.tasks.view.PrintTasksView;
 
 import java.io.IOException;
 
-public class AppController {
+public class AppController{
     private AddTaskController addTaskController;
     private EditTaskController editTaskController;
     private ViewCalendarController viewCalendarController;
@@ -72,4 +72,5 @@ public class AppController {
         }
 
     }
+
 }

@@ -14,16 +14,16 @@ public class Task implements Cloneable, Serializable {
     private boolean active;
     private boolean repeated;
 
-    public Task(String title, LocalDateTime time) {
+    public Task(String title, LocalDateTime time, boolean active) {
         if(time == null) {
             throw new IllegalArgumentException("The time should be above 0!");
         }
         this.title = title;
         this.time = time;
-        this.active = false;
+        this.active = active;
     }
 
-    public Task(String title, LocalDateTime start, LocalDateTime end, int interval) {
+    public Task(String title, LocalDateTime start, LocalDateTime end, int interval, boolean active) {
         if(interval < 0) {
             throw new IllegalArgumentException("The interval should be above 0!");
         }
@@ -31,7 +31,7 @@ public class Task implements Cloneable, Serializable {
         this.start = start;
         this.end = end;
         this.interval = interval;
-        this.active = false;
+        this.active = active;
         this.repeated = true;
     }
 

@@ -26,13 +26,13 @@ public class UserNotificationsController extends Thread {
         logger.info("Run thread");
         Iterable<Task> result;
         while (true) {
-            result = Tasks.incoming(taskList, LocalDateTime.now(), LocalDateTime.now().plusMinutes(1));
+            result = Tasks.incoming(taskList, LocalDateTime.now(), LocalDateTime.now().plusSeconds(1));
             for (Task task: result
                  ) {
                 userNotificationsView.printNotification(task);
             }
             try {
-                sleep(60000);
+                sleep(1000);
             } catch (InterruptedException e) {
                 logger.error("Interrupted Exception");
                 logger.log(Level.FATAL, "Exception: ", e);
